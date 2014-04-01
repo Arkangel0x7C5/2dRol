@@ -18,7 +18,12 @@ SOURCES += engine.cpp \
     cuadricula.cpp \
     gameobject.cpp \
     event.cpp \
-    service.cpp
+    service.cpp \
+    Event/keyboarevent.cpp \
+    Interfaces/command.cpp \
+    Event/mouseevent.cpp \
+    view.cpp \
+    camera.cpp
 
 HEADERS += engine.h\
         engine_global.h \
@@ -26,7 +31,12 @@ HEADERS += engine.h\
     cuadricula.h \
     gameobject.h \
     event.h \
-    service.h
+    service.h \
+    Event/keyboarevent.h \
+    Interfaces/command.h \
+    Event/mouseevent.h \
+    view.h \
+    camera.h
 
 unix {
     target.path = /usr/lib

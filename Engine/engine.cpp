@@ -6,6 +6,8 @@
 
 #include <GLES3/gl3.h>
 
+#include <Event/keyboarevent.h>
+
 
 Engine::Engine(int *pargc, char **argv){
     glutInit(pargc,argv);
@@ -28,6 +30,9 @@ Engine::Engine(int *pargc, char **argv){
     glutSpecialUpFunc(&eKeyUp);
 
     glutMouseFunc(&mouseButton);
+
+    KeyboarEvent::init();
+
 }
 
 Engine &Engine::instance(int *pargc, char **argv){
@@ -74,6 +79,8 @@ void Engine::resize(int width, int height){
 
 void Engine::keyDown(byte key, int /*width*/, int /*height*/){
     printf("%x\n",key);
+    KeyboarEvent* e = KeyboarEvent::create(key);
+    EventManager::instance().sendEvent(e);
 }
 
 void Engine::keyUp(byte /*key*/, int /*width*/, int /*height*/){

@@ -2,7 +2,7 @@
 #include <pthread.h>
 #include <unistd.h>
 
-Event::Event(){
+Event::Event():typeID(0),sender(nullptr){
 }
 
 
@@ -28,6 +28,7 @@ void EventManager::run(){
                     (*itList)->onEvent(e);
                 }
             }
+            delete e;
         }else{
             usleep(10);
         }

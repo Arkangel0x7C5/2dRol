@@ -7,6 +7,7 @@ class GameObject{
     public:
         GameObject();
         virtual drawable* getDrawable();
+
 };
 
 #endif // GAMEOBJECT_H
