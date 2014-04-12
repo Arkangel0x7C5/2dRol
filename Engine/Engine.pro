@@ -23,7 +23,13 @@ SOURCES += engine.cpp \
     Interfaces/command.cpp \
     Event/mouseevent.cpp \
     view.cpp \
-    camera.cpp
+    camera.cpp \
+    commandmanager.cpp \
+    imagemanager.cpp \
+    scene.cpp \
+    quadtree.cpp \
+    Interfaces/externanimation.cpp \
+    Interfaces/internanimation.cpp
 
 HEADERS += engine.h\
         engine_global.h \
@@ -36,7 +42,13 @@ HEADERS += engine.h\
     Interfaces/command.h \
     Event/mouseevent.h \
     view.h \
-    camera.h
+    camera.h \
+    commandmanager.h \
+    imagemanager.h \
+    scene.h \
+    quadtree.h \
+    Interfaces/externanimation.h \
+    Interfaces/internanimation.h
 
 unix {
     target.path = /usr/lib
@@ -44,3 +56,6 @@ unix {
 }
 
 unix|win32: LIBS += -lGL -lglut -lglapi -lEGL
+
+
+unix|win32: LIBS += -lSDL -lSDL_image

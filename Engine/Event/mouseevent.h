@@ -22,10 +22,19 @@ class MouseClickEvent:public Event{
 
     private:
         Point m_p;
+        static uint s_ID;
 };
 class MouseMotionEvent:public Event{
-    public:
         MouseMotionEvent();
+    public:
+        static MouseClickEvent* create(byte k = 0);
+        static uint ID(){
+            return s_ID;
+        }
+        static void init();
+        static void uinit();
+    private:
+        static uint s_ID;
 };
 
 #endif // MOUSEEVENT_H

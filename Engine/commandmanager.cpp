@@ -3,3 +3,7 @@
 CommandManager::CommandManager()
 {
 }
+
+void CommandManager::run(){
+
+}

@@ -2,3 +2,7 @@
 
 View::View(){
 }
+
+void View::onClick(MouseClickEvent *e){
+
+}

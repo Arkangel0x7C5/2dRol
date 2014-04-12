@@ -28,9 +28,30 @@ struct Point{
             return ejes[2];
         }
 };
+struct Point2d{
+    public:
+        Point2d(float x = 0,float y = 0){
+            this->x() = x;
+            this->y() = y;
+        }
+        float ejes[2];
+        float &x(){
+            return ejes[0];
+        }
+        float &y(){
+            return ejes[1];
+        }
+
+};
+
 struct Size{
     Size(){
         w() = h() = x() = 0;
+    }
+    Size(float w,float h,float x){
+        this->w() = w;
+        this->h() = h;
+        this->x() = x;
     }
     float s[3];
     float& w(){
@@ -41,6 +62,35 @@ struct Size{
     }
     float& x(){
         return s[2];
+    }
+};
+
+struct Size2D{
+    Size2D(){
+        w() = h() = 0;
+    }
+    Size2D(float w,float h){
+        this->w() = w;
+        this->h() = h;
+    }
+    float s[2];
+    float& w(){
+        return s[0];
+    }
+    float& h(){
+        return s[1];
+    }
+};
+struct Rect2D:Point2d,Size2D{
+    Rect2D(float x = 0,float y = 0,float w = 0,float h = 0){
+        this->w() = w;
+        this->h() = h;
+        this->x() = x;
+        this->y() = y;
+    }
+    bool contains(Point2d& p){
+        return (x()<=p.x() && (x()+w())>=p.x()) &&
+                (y()<=p.y() && (y()+h())>=p.y());
     }
 };
 

@@ -3,10 +3,14 @@
 
 #include "drawable.h"
 #include <vector>
+struct Vertex{
+    Point point;
+    Point2d texCoord;
+};
 
 class cuadricula : public drawable{
     public:
-        cuadricula(int w,int x);
+        cuadricula(int w, int h);
         virtual ~cuadricula();
         virtual void draw();
 
@@ -15,9 +19,12 @@ class cuadricula : public drawable{
 
     private:
         void gen();
-        uint m_vboID;
+        uint m_vboPoint;
+        uint m_vboTexture;
+        uint m_texture;
         Size m_size;
         std::vector<Point> m_point;
+        std::vector<Point2d> m_textCoord;
         std::vector<byte> m_index;
 };
 
