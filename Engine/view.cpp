@@ -3,6 +3,6 @@
 View::View(){
 }
 
-void View::onClick(MouseClickEvent *e){
+void View::onClick(MouseClickEvent */*e*/){
 
 }

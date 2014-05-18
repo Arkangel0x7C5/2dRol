@@ -7,8 +7,17 @@ Camera::Camera(){
 }
 
 void Camera::setup(){
-    glOrtho(0,m_size.w(),m_size.h(),0,-m_size.x(),m_size.x());
+    glOrtho(0,m_size.w()/m_wordSize.w(),m_size.h()/m_wordSize.h(),0,-m_wordSize.x(),m_wordSize.x());
 }
+Size Camera::wordSize() const{
+    return m_wordSize;
+}
+
+void Camera::setWordSize(const Size &wordSize)
+{
+    m_wordSize = wordSize;
+}
+
 Size Camera::size() const{
     return m_size;
 }

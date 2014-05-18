@@ -28,8 +28,19 @@ SOURCES += engine.cpp \
     imagemanager.cpp \
     scene.cpp \
     quadtree.cpp \
-    Interfaces/externanimation.cpp \
-    Interfaces/internanimation.cpp
+    Interfaces/animation.cpp \
+    timer.cpp \
+    Interfaces/clonable.cpp \
+    Interfaces/objectfactory.cpp \
+    Interfaces/property.cpp \
+    Interfaces/component.cpp \
+    Component/graphiccomponent.cpp \
+    Component/controllercomponent.cpp \
+    Component/physicscomponent.cpp \
+    Component/commandcomponent.cpp \
+    Physics/basicphysicscomponent.cpp \
+    Controller/playercontrollercomponent.cpp \
+    Controller/iacontrollercomponent.cpp
 
 HEADERS += engine.h\
         engine_global.h \
@@ -47,8 +58,19 @@ HEADERS += engine.h\
     imagemanager.h \
     scene.h \
     quadtree.h \
-    Interfaces/externanimation.h \
-    Interfaces/internanimation.h
+    Interfaces/animation.h \
+    timer.h \
+    Interfaces/clonable.h \
+    Interfaces/objectfactory.h \
+    Interfaces/property.h \
+    Interfaces/component.h \
+    Component/graphiccomponent.h \
+    Component/controllercomponent.h \
+    Component/physicscomponent.h \
+    Component/commandcomponent.h \
+    Physics/basicphysicscomponent.h \
+    Controller/playercontrollercomponent.h \
+    Controller/iacontrollercomponent.h
 
 unix {
     target.path = /usr/lib

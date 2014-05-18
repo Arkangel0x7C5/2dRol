@@ -27,6 +27,15 @@ struct Point{
         float &z(){
             return ejes[2];
         }
+        const float &x_const()const{
+            return ejes[0];
+        }
+        const float &y_const()const{
+            return ejes[1];
+        }
+        const float &z_const()const{
+            return ejes[2];
+        }
 };
 struct Point2d{
     public:
@@ -39,6 +48,12 @@ struct Point2d{
             return ejes[0];
         }
         float &y(){
+            return ejes[1];
+        }
+        const float &x_const()const{
+            return ejes[0];
+        }
+        const float &y_const()const{
             return ejes[1];
         }
 
@@ -63,6 +78,15 @@ struct Size{
     float& x(){
         return s[2];
     }
+    const float& w_const()const{
+        return s[0];
+    }
+    const float& h_const()const{
+        return s[1];
+    }
+    const float& x_const()const{
+        return s[2];
+    }
 };
 
 struct Size2D{
@@ -78,6 +102,12 @@ struct Size2D{
         return s[0];
     }
     float& h(){
+        return s[1];
+    }
+    const float& w_const() const{
+        return s[0];
+    }
+    const float& h_const() const{
         return s[1];
     }
 };

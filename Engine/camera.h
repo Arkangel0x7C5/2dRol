@@ -14,7 +14,10 @@ class Camera{
         Point pos() const;
         void setPos(const Point &pos);
         void update();
-    protected:
+        Size wordSize() const;
+        void setWordSize(const Size &wordSize);
+
+protected:
         friend class Engine;
         virtual void setup();
     private:
@@ -23,6 +26,7 @@ class Camera{
         Point m_windowsPos;
 
         Size m_size;
+        Size m_wordSize;
         Point m_pos;
 
 };

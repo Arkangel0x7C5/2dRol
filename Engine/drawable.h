@@ -7,7 +7,7 @@ class drawable{
     public:
         drawable();
         virtual ~drawable();
-        virtual void draw() = 0;
+        virtual void draw() = 0;/*
         Point pos() const;
         void setPos(const Point &pos);
 
@@ -16,7 +16,7 @@ class drawable{
 
     private:
         Point m_pos;
-        Size m_size;
+        Size m_size;*/
 };
 
 #endif // DRAWABLE_H

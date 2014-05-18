@@ -4,7 +4,6 @@
 #include "engine_global.h"
 #include <gameobject.h>
 #include "camera.h"
-#include "quadtree.h"
 #include "scene.h"
 
 #include <list>
@@ -34,6 +33,7 @@ class ENGINESHARED_EXPORT Engine{
         void setDrawableObject(drawable *drawableObject);
 
         void startGame();
+        void pauseGame();
         void stopGame();
         void exit();
 
@@ -43,12 +43,16 @@ class ENGINESHARED_EXPORT Engine{
         void setCurrentCamera(Camera *currentCamera);
 
         uint m_texture;
+        Scene *scene() const;
+        void setScene(Scene *scene);
+
     private:
         static bool gameMode;
         drawable* m_drawableObject;
 
         std::list<GameObject*> gameObjects;
         Camera* m_currentCamera;
+        Scene* m_scene;
 };
 
 #endif // ENGINE_H

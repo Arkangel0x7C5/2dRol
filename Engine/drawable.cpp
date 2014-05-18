@@ -3,7 +3,7 @@
 drawable::drawable(){
 }
 
-drawable::~drawable(){}
+drawable::~drawable(){}/*
 Point drawable::pos() const
 {
     return m_pos;
@@ -21,6 +21,6 @@ Size drawable::size() const
 void drawable::setSize(const Size &size)
 {
     m_size = size;
-}
+}*/
 
 

@@ -2,5 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     Engine \
-    launcher \
-    Game
+    Game    \
+    launcher

@@ -8,7 +8,7 @@ struct Vertex{
     Point2d texCoord;
 };
 
-class cuadricula : public drawable{
+class ENGINESHARED_EXPORT cuadricula : public drawable{
     public:
         cuadricula(int w, int h);
         virtual ~cuadricula();

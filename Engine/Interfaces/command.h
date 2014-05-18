@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "objectfactory.h"
 
 class Command{
     public:
@@ -15,17 +16,19 @@ class Command{
         virtual void exec() = 0;
 };
 
-class ConmandFactory{
+
+
+class CommandFactory:public ObjectFactory<Command,std::string>{
     public:
-        ConmandFactory();
+        CommandFactory();/*
         Command* createCommand(const std::string& command);
         Command* createCommand(const std::vector<std::string>& comands){
             return createCommandPrivate(comands);
-        }
+        }*/
         void exec(const std::string& command);
 
     protected:
-        virtual Command* createCommandPrivate(const std::vector<std::string>& comands) = 0;
+        //virtual Command* createCommandPrivate(const std::vector<std::string>& comands) = 0;
 };
 
 #endif // COMMAND_H

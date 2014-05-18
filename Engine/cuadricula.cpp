@@ -25,8 +25,8 @@ cuadricula::~cuadricula(){
 
 void cuadricula::draw(){
 
-    glTranslatef(m_size.w()/2,m_size.h()/2-1,0);
-    glRotatef(180,1,0,0);
+    //glTranslatef(m_size.w()/2,m_size.h()/2-1,0);
+    //glRotatef(180,1,0,0);
 
     glEnable(GL_TEXTURE_2D);
     glActiveTexture(GL_TEXTURE0);
@@ -91,11 +91,11 @@ void cuadricula::gen(){
         y = e/(uint)size().w();
         x = e%(uint)size().w();
 
-        point.x() = x-m_size.w()/2;
-        point.y() = y-m_size.h()/2;
+        point.x() = x;
+        point.y() = y;
 
         texCoord.x() = x/m_size.w();
-        texCoord.y() = 1-y/m_size.h();
+        texCoord.y() = y/m_size.h();
 
         m_textCoord.push_back(texCoord);
         m_point.push_back(point);
@@ -104,11 +104,11 @@ void cuadricula::gen(){
         y = i/(uint)m_size.w();
         x = i%(uint)m_size.w();
 
-        point.x() = x-m_size.w()/2;
-        point.y() = y-m_size.h()/2;
+        point.x() = x;
+        point.y() = y;
 
         texCoord.x() = x/m_size.w();
-        texCoord.y() = 1-y/m_size.h();
+        texCoord.y() = y/m_size.h();
 
         m_textCoord.push_back(texCoord);
         m_point.push_back(point);

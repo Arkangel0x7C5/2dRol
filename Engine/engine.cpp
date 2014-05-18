@@ -10,10 +10,11 @@
 #include <Event/keyboarevent.h>
 #include <Event/mouseevent.h>
 #include <imagemanager.h>
+#include <commandmanager.h>
 
 
 bool Engine::gameMode = false;
-Engine::Engine(int *pargc, char **argv){
+Engine::Engine(int *pargc, char **argv):m_scene(nullptr){
     glutInit(pargc,argv);
     glutInitContextVersion(3,0);
     glutInitContextProfile(GLUT_FORWARD_COMPATIBLE);
@@ -32,6 +33,7 @@ Engine::Engine(int *pargc, char **argv){
     KeyboarEvent::init();
     MouseClickEvent::init();
     MouseMotionEvent::init();
+    CommandManager::instance().start();
 
     int error = glGetError();
     if(error != GL_NO_ERROR)
@@ -51,7 +53,8 @@ void Engine::setViewPort(){
 
 void Engine::draw(){
     Engine& e = instance();
-    drawable* d = e.drawableObject();
+    //drawable* d = e.drawableObject();
+    Scene* escena = e.scene();
 
     Camera* c = e.currentCamera();
     if(c){
@@ -65,21 +68,15 @@ void Engine::draw(){
 
         glTranslatef(c->pos().x(),c->pos().y(),c->pos().z());
 
-
+        if(escena){
+            Rect2D r;
+            escena->draw(r);
+        }
+/*
     if(d){
+        printf("onDraw\n");
         d->draw();
-    }/*
-        glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D,e.m_texture);
-
-        //glColor3f(1,1,0.3);
-        glBegin(GL_QUADS);
-        glTexCoord2f(1,1);glVertex3f(3,0,0);
-        glTexCoord2f(1,0);glVertex3f(3,6,0);
-        glTexCoord2f(0,0);glVertex3f(0,6,0);
-        glTexCoord2f(0,1);glVertex3f(0,0,0);
-        glEnd();*/
-
+    }*/
         glutSwapBuffers();
     }
 }
@@ -90,6 +87,7 @@ void Engine::resize(int width, int height){
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+    c->setSize(Size(width,height,0));
     glViewport(0,0,width,height);
     printf("resize %ux%u\n",width,height);
     //currentWindows->setSize(Size(width,height));
@@ -132,10 +130,10 @@ void Engine::eKeyDown(int key, int /*width*/, int /*height*/){
             cameraPos.y() -= 0.2;
             break;
         case GLUT_KEY_LEFT:
-            cameraPos.x() -= 0.02;
+            cameraPos.x() -= 0.1;
             break;
         case GLUT_KEY_RIGHT:
-            cameraPos.x() += 0.02;
+            cameraPos.x() += 0.1;
             break;
         default:
             break;
@@ -176,18 +174,36 @@ void Engine::setDrawableObject(drawable *drawableObject){
 void Engine::startGame(){
     if(!gameMode){
         gameMode = true;
+        Scene* s = scene();
+        Command* startCmd;/*
+        if(s && (startCmd = s->createCommand("start"))){
+            CommandManager::instance().execComand(startCmd);
+        }*/
         glutGameModeString("640x480:16@60");
-        //glutFullScreen();
-        glutEnterGameMode();
+        glutFullScreen();
+        //glutEnterGameMode();
 
         setupWindows();
     }
 
 }
 
-void Engine::stopGame(){
-    //glutLeaveFullScreen();
-    glutLeaveGameMode();
+void Engine::pauseGame(){
+    Scene* s = scene();
+    Command* pauseCmd;/*
+    if(s && (pauseCmd = s->createCommand("pause"))){
+        CommandManager::instance().execComand(pauseCmd);
+    }*/
+}
+
+void Engine::stopGame(){/*
+    Scene* s = scene();
+    Command* stopCmd;
+    if(s && (stopCmd = s->createCommand("stop"))){
+        CommandManager::instance().execComand(stopCmd);
+    }*/
+    glutLeaveFullScreen();
+    //glutLeaveGameMode();
     gameMode = false;
 }
 
@@ -220,4 +236,13 @@ Camera *Engine::currentCamera(){
 void Engine::setCurrentCamera(Camera *currentCamera){
     m_currentCamera = currentCamera;
 }
+Scene *Engine::scene() const
+{
+    return m_scene;
+}
+
+void Engine::setScene(Scene *scene){
+    m_scene = scene;
+}
+
 

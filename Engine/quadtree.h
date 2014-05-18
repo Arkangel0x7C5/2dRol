@@ -1,23 +1,25 @@
 #ifndef QUADTREE_H
 #define QUADTREE_H
 #include <set>
-#include <gameobject.h>
 #include <cstdlib>
 #include <cstdio>
 #include <string>
+#include "engine_global.h"
 
-typedef struct QuadTreeNode{
-    QuadTreeNode(const Rect2D& r = Rect2D());
-    void addObjet(GameObject *o,uint maxObjectLevel = 30);
+class GameObject;
+struct QuadTreeNode;
 
-    bool isEmpy();
-    bool isHoja();
-    void newLevel();
-
-    struct QuadTreeNode* child[2][2];
-    struct QuadTreeNode* father;
-    std::set<GameObject*> m_Objects;
-    Rect2D r;
-}QuadTreeNode;
+class QuadTree{
+    public:
+        QuadTree();
+        void setSize(Size2D &s);
+        void setLevelSize(Size2D& s);
+        std::set<GameObject*> getObjects(Rect2D& r);
+        void addObjet(GameObject *o);
+        void removeObjet(GameObject *o);
+    private:
+        QuadTreeNode* m_tree;
+        uint m_maxObjectLevel;
+};
 
 #endif // QUADTREE_H

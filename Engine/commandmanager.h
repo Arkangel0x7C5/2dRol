@@ -6,8 +6,9 @@
 #include <Interfaces/command.h>
 
 class CommandManager : public Service{
-    public:
         CommandManager();
+    public:
+        static CommandManager& instance();
         virtual void run();
 
         //void listenAction(std::string actionName,eventListener);
